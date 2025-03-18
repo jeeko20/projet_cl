@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>calculatrice</title>
+    <link rel="stylesheet" href="calculatrice.css" />
+  </head>
+  <body>
+    <div class="menu-icon" id="icon">
+      ☰ <!-- Icône hamburger -->
+      
+    </div>
+  <ul class="nav-link" id="nav">
+      <li><a href="index.html">Accueil</a></li>
+      <li><a href="#">Fonction</a></li>
+      <li><a href="#">Autre</a></li>
+  </ul>
+    <div class="calculatrice">
+      <input type="text" id="resultat" />
+      <div class="boutons">
+        <button class="bouton" onclick="erase()">C</button>
+        <button class="bouton" onclick="parenthese()">( )</button>
+        <button class="bouton" onclick="ajouter('%')">%</button>
+        <button class="bouton" onclick="ajouter('**')">^</button>
+        <button class="bouton" onclick="ajouter('7')">7</button>
+        <button class="bouton" onclick="ajouter('8')">8</button>
+        <button class="bouton" onclick="ajouter('9')">9</button>
+        <button class="bouton" onclick="ajouter('+')">+</button>
+        <button class="bouton" onclick="ajouter('4')">4</button>
+        <button class="bouton" onclick="ajouter('5')">5</button>
+        <button class="bouton" onclick="ajouter('6')">6</button>
+        <button class="bouton" onclick="ajouter('-')">-</button>
+        <button class="bouton" onclick="ajouter('1')">1</button>
+        <button class="bouton" onclick="ajouter('2')">2</button>
+        <button class="bouton" onclick="ajouter('3')">3</button>
+        <button class="bouton" onclick="ajouter('*')">*</button>
+        <button class="bouton" onclick="ajouter('.')">.</button>
+        <button class="bouton" onclick="ajouter('0')">0</button>
+        <button class="bouton" onclick="effacer()" style="color: lightcoral">
+          x
+        </button>
+        <button class="bouton" onclick="ajouter('/')">/</button>
+        <button class="bouton" onclick="factoriel()">!</button>
+        <button id="togglebutton" class="bouton">ψ</button>
+        <button
+          style="
+            background-color: lightgreen;
+            color: white;
+            font-size: 15px;
+            font-weight: bolder;
+          "
+          class="bouton"
+          onclick="calculer()"
+        >
+          =
+        </button>
+      </div>
+      <div id="menu" class="cache">
+        <button class="bouton">cos</button>
+        <button class="bouton">sin</button>
+        <button class="bouton">tan</button>
+        <button class="bouton">cotan</button>
+        <button class="bouton">log</button>
+        <button class="bouton">ln</button>
+        <button class="bouton">exp</button>
+      </div>
+    </div>
+
+    <script src="first.js"></script>
+  </body>
+</html>

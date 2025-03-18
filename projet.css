@@ -1,0 +1,47 @@
+body{
+    background-color: bisque;
+}
+h1{
+    text-align: center;
+    padding-top: 10px;
+    color: lightskyblue
+}
+.bouton{
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    margin: 30% 4%;
+    gap: 50px;
+}
+#b{
+    height:50px;
+    width: 80%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+    border: none;
+   
+}
+button:hover{
+    background-color: aquamarine;
+}
+
+nav-links {
+    display: flex;
+    list-style: none;
+}
+
+.nav-links li {
+    margin: 0 1rem;
+}
+
+.nav-links a {
+    color: white;
+    text-decoration: none;
+    font-size: 1rem;
+    transition: color 0.3s ease;
+}
+
+.nav-links a:hover {
+    color: #4CAF50;
+}
