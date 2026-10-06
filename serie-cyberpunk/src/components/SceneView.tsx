@@ -55,11 +55,12 @@ const MissingFile: React.FC<{label: string; path: string; hint?: string}> = ({
   </AbsoluteFill>
 );
 
-/** Une scène : image Ken Burns, fondu/glitch léger, sous-titres, audio. */
-export const SceneView: React.FC<{scene: SceneMeta; index: number}> = ({
-  scene,
-  index,
-}) => {
+/** Une scène : image Ken Burns, crossfade, sous-titres, audio. */
+export const SceneView: React.FC<{
+  scene: SceneMeta;
+  index: number;
+  previous?: SceneMeta;
+}> = ({scene, index, previous}) => {
   const frame = useCurrentFrame();
   const {fps, durationInFrames} = useVideoConfig();
 
@@ -79,8 +80,12 @@ export const SceneView: React.FC<{scene: SceneMeta; index: number}> = ({
     extrapolateRight: "clamp",
   });
 
-  // Fondu du noir sur les 9 premières frames (transition d'entrée)
-  const fadeIn = interpolate(frame, [0, 9], [1, 0], {
+  // Crossfade d'entrée (9 frames) : l'image précédente s'efface, la nouvelle apparaît
+  const incomingOpacity = interpolate(frame, [0, 9], [0, 1], {
+    extrapolateLeft: "clamp",
+    extrapolateRight: "clamp",
+  });
+  const outgoingOpacity = interpolate(frame, [0, 9], [1, 0], {
     extrapolateLeft: "clamp",
     extrapolateRight: "clamp",
   });
@@ -94,6 +99,22 @@ export const SceneView: React.FC<{scene: SceneMeta; index: number}> = ({
 
   return (
     <AbsoluteFill style={{backgroundColor: "#000"}}>
+      {/* Image précédente qui s'efface (crossfade) */}
+      {previous && previous.imageOk ? (
+        <AbsoluteFill>
+          <CanvasImage
+            src={staticFile(previous.image)}
+            premountFor={fps}
+            style={{
+              width: "100%",
+              height: "100%",
+              objectFit: "cover",
+              opacity: outgoingOpacity,
+            }}
+          />
+        </AbsoluteFill>
+      ) : null}
+
       {scene.imageOk ? (
         <AbsoluteFill
           style={{
@@ -103,7 +124,13 @@ export const SceneView: React.FC<{scene: SceneMeta; index: number}> = ({
         >
           <CanvasImage
             src={staticFile(scene.image)}
-            style={{width: "100%", height: "100%", objectFit: "cover"}}
+            premountFor={fps}
+            style={{
+              width: "100%",
+              height: "100%",
+              objectFit: "cover",
+              opacity: incomingOpacity,
+            }}
           />
         </AbsoluteFill>
       ) : (
@@ -150,14 +177,11 @@ export const SceneView: React.FC<{scene: SceneMeta; index: number}> = ({
       ) : (
         <MissingFile label="audio" path={scene.audio} />
       )}
-
-      {/* Écran noir de fondu en entrée */}
-      <AbsoluteFill style={{backgroundColor: "#000", opacity: fadeIn}} />
     </AbsoluteFill>
   );
 };
 
-/** Séquence complète des scènes d'un épisode (fondu noir entre scènes). */
+/** Séquence complète des scènes d'un épisode (crossfade de 9 frames). */
 export const SceneSequence: React.FC<{scenes: SceneMeta[]}> = ({scenes}) => {
   let offset = 0;
   return (
@@ -172,7 +196,7 @@ export const SceneSequence: React.FC<{scenes: SceneMeta[]}> = ({scenes}) => {
             durationInFrames={scene.durationInFrames}
             premountFor={30}
           >
-            <SceneView scene={scene} index={i} />
+            <SceneView scene={scene} index={i} previous={i > 0 ? scenes[i - 1] : undefined} />
           </Sequence>
         );
       })}
