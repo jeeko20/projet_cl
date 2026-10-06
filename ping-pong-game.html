@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jeu Pong</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #2c3e50;
+            font-family: Arial, sans-serif;
+            overflow: hidden;
+        }
+
+        #gameContainer {
+            position: relative;
+            width: 800px;
+            height: 400px;
+        }
+
+        #gameCanvas {
+            background-color: #000;
+            border: 2px solid #3498db;
+            border-radius: 8px;
+        }
+
+        #scoreBoard {
+            position: absolute;
+            top: 10px;
+            width: 100%;
+            text-align: center;
+            color: white;
+            font-size: 24px;
+            text-shadow: 0 0 5px rgba(52, 152, 219, 0.8);
+        }
+
+        #startScreen {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            z-index: 10;
+        }
+
+        #startButton {
+            padding: 15px 30px;
+            font-size: 18px;
+            background-color: #3498db;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 20px;
+            transition: background-color 0.3s;
+        }
+
+        #startButton:hover {
+            background-color: #2980b9;
+        }
+
+        #instructions {
+            text-align: center;
+            max-width: 80%;
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+    </style>
+</head>
+<body>
+    <div id="gameContainer">
+        <div id="scoreBoard">Joueur: 0 - Ordinateur: 0</div>
+        <canvas id="gameCanvas" width="800" height="400"></canvas>
+        <div id="startScreen">
+            <h1>Jeux Pong</h1>
+            <div id="instructions">
+                <p>Contrôles:</p>
+                <p>Flèche haut / W - Monter</p>
+                <p>Flèche bas / S - Descendre</p>
+                <p>Appuyez sur ESPACE pour commencer</p>
+            </div>
+            <button id="startButton">Commencer le jeu</button>
+        </div>
+    </div>
+
+    <script>
+        // Récupération des éléments du DOM
+        const canvas = document.getElementById('gameCanvas');
+        const ctx = canvas.getContext('2d');
+        const scoreBoard = document.getElementById('scoreBoard');
+        const startScreen = document.getElementById('startScreen');
+        const startButton = document.getElementById('startButton');
+
+        // Variables du jeu
+        let gameRunning = false;
+        let playerScore = 0;
+        let computerScore = 0;
+
+        // Propriétés de la raquette du joueur
+        const paddleHeight = 80;
+        const paddleWidth = 10;
+        const paddleSpeed = 8;
+
+        // Propriétés de la balle
+        const ballSize = 10;
+        const ballSpeed = 5;
+
+        // Positions des raquettes et de la balle
+        let playerY = canvas.height / 2 - paddleHeight / 2;
+        let computerY = canvas.height / 2 - paddleHeight / 2;
+        let ballX = canvas.width / 2;
+        let ballY = canvas.height / 2;
+        let ballSpeedX = ballSpeed;
+        let ballSpeedY = ballSpeed;
+
+        // Gestion des touches
+        const keys = {};
+
+        // Événements de clavier
+        document.addEventListener('keydown', (e) => {
+            keys[e.key] = true;
+
+            // Commencer le jeu avec espace
+            if (e.key === ' ' && !gameRunning) {
+                startGame();
+            }
+        });
+
+        document.addEventListener('keyup', (e) => {
+            keys[e.key] = false;
+        });
+
+        // Bouton de démarrage
+        startButton.addEventListener('click', startGame);
+
+        // Fonction pour commencer le jeu
+        function startGame() {
+            gameRunning = true;
+            startScreen.style.display = 'none';
+            resetBall();
+            gameLoop();
+        }
+
+        // Fonction pour réinitialiser la balle
+        function resetBall() {
+            ballX = canvas.width / 2;
+            ballY = canvas.height / 2;
+
+            // Choisir une direction aléatoire pour la balle
+            ballSpeedX = (Math.random() > 0.5 ? 1 : -1) * ballSpeed;
+            ballSpeedY = (Math.random() * ballSpeed) - (ballSpeed / 2);
+        }
+
+        // Fonction principale de la boucle de jeu
+        function gameLoop() {
+            if (!gameRunning) return;
+
+            update();
+            draw();
+
+            requestAnimationFrame(gameLoop);
+        }
+
+        // Fonction de mise à jour de l'état du jeu
+        function update() {
+            // Mouvement du joueur
+            if (keys['ArrowUp'] || keys['w']) {
+                playerY = Math.max(0, playerY - paddleSpeed);
+            }
+            if (keys['ArrowDown'] || keys['s']) {
+                playerY = Math.min(canvas.height - paddleHeight, playerY + paddleSpeed);
+            }
+
+            // Intelligence artificielle de l'ordinateur (suivi de la balle avec un peu de retard)
+            const computerPaddleCenter = computerY + paddleHeight / 2;
+            if (computerPaddleCenter < ballY - 15) {
+                computerY += paddleSpeed * 0.8; // L'ordinateur est un peu plus lent que le joueur
+            } else if (computerPaddleCenter > ballY + 15) {
+                computerY -= paddleSpeed * 0.8;
+            }
+
+            // Limiter l'ordinateur à rester dans les bornes
+            computerY = Math.max(0, Math.min(canvas.height - paddleHeight, computerY));
+
+            // Mouvement de la balle
+            ballX += ballSpeedX;
+            ballY += ballSpeedY;
+
+            // Collision avec le haut et le bas
+            if (ballY <= 0 || ballY >= canvas.height) {
+                ballSpeedY = -ballSpeedY;
+            }
+
+            // Collision avec les raquettes
+            // Raquette du joueur
+            if (ballX <= paddleWidth &&
+                ballY >= playerY &&
+                ballY <= playerY + paddleHeight) {
+                ballSpeedX = Math.abs(ballSpeedX);
+                // Modifier la trajectoire selon où la balle touche la raquette
+                const hitPosition = (ballY - playerY) / paddleHeight;
+                ballSpeedY = (hitPosition - 0.5) * 10;
+            }
+
+            // Raquette de l'ordinateur
+            if (ballX >= canvas.width - paddleWidth &&
+                ballY >= computerY &&
+                ballY <= computerY + paddleHeight) {
+                ballSpeedX = -Math.abs(ballSpeedX);
+                // Modifier la trajectoire selon où la balle touche la raquette
+                const hitPosition = (ballY - computerY) / paddleHeight;
+                ballSpeedY = (hitPosition - 0.5) * 10;
+            }
+
+            // Score si la balle dépasse une raquette
+            if (ballX < 0) {
+                // Ordinateur marque
+                computerScore++;
+                updateScore();
+                resetBall();
+            } else if (ballX > canvas.width) {
+                // Joueur marque
+                playerScore++;
+                updateScore();
+                resetBall();
+            }
+        }
+
+        // Fonction de dessin
+        function draw() {
+            // Effacer le canevas
+            ctx.fillStyle = '#000';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+            // Dessiner la ligne centrale pointillée
+            ctx.setLineDash([10, 15]);
+            ctx.beginPath();
+            ctx.moveTo(canvas.width / 2, 0);
+            ctx.lineTo(canvas.width / 2, canvas.height);
+            ctx.strokeStyle = '#3498db';
+            ctx.lineWidth = 2;
+            ctx.stroke();
+            ctx.setLineDash([]);
+
+            // Dessiner la raquette du joueur
+            ctx.fillStyle = '#3498db';
+            ctx.fillRect(0, playerY, paddleWidth, paddleHeight);
+
+            // Dessiner la raquette de l'ordinateur
+            ctx.fillStyle = '#e74c3c';
+            ctx.fillRect(canvas.width - paddleWidth, computerY, paddleWidth, paddleHeight);
+
+            // Dessiner la balle
+            ctx.fillStyle = '#ecf0f1';
+            ctx.beginPath();
+            ctx.arc(ballX, ballY, ballSize, 0, Math.PI * 2);
+            ctx.fill();
+        }
+
+        // Fonction de mise à jour du score
+        function updateScore() {
+            scoreBoard.textContent = `Joueur: ${playerScore} - Ordinateur: ${computerScore}`;
+        }
+
+        // Initialisation du score
+        updateScore();
+    </script>
+</body>
+</html>

@@ -1,0 +1,56 @@
+{
+  "theme": "fishing",
+  "language": "english",
+  "scenes": [
+    {
+      "id": 1,
+      "text": "Early morning mist hovers over the calm lake. A weathered fishing boat sits peacefully at the dock, waiting for the day's adventure.",
+      "imagePrompt": "Cinematic nature photography, early morning golden hour, serene lake with gentle mist rising from the water surface, a wooden fishing boat tied to an old wooden dock, soft warm sunlight filtering through the haze, tall pine trees in the background, dew on the grass, peaceful and tranquil atmosphere, shot in vertical 9:16 format, film grain texture, shallow depth of field, warm color grading with orange and blue tones, 1080x1920 vertical format",
+      "imageFile": "scene-01-dock.png",
+      "audioFile": "scene-01-dock.wav"
+    },
+    {
+      "id": 2,
+      "text": "Old Thomas, a kind fisherman with silver hair and a warm smile, carefully baits his hook with a wiggling worm. His experienced hands move with practiced ease.",
+      "imagePrompt": "Cinematic nature photography, close-up of elderly fisherman with silver hair and weathered face with kind warm smile, wearing a red flannel shirt and worn baseball cap, hands holding a fishing rod, a worm on the hook, early morning light, emotional portrait, soft focus background showing lake and trees, vertical 9:16 format, film grain texture, warm color grading, 1080x1920 vertical format",
+      "imageFile": "scene-02-bait.png",
+      "audioFile": "scene-02-bait.wav"
+    },
+    {
+      "id": 3,
+      "text": "The fishing line soars through the air and lands with a soft plop in the crystal-clear water. Thomas settles into patient silence, watching the bobber dance on gentle waves.",
+      "imagePrompt": "Cinematic nature photography, fishing line arcing through the air in motion blur, landing in pristine lake water with ripples spreading outward, fishing rod held by weathered hands, golden morning light, sparkling water reflections, peaceful atmosphere, bokeh effect on background trees, vertical 9:16 format, film grain texture, warm color grading, 1080x1920 vertical format",
+      "imageFile": "scene-03-cast.png",
+      "audioFile": "scene-03-cast.wav"
+    },
+    {
+      "id": 4,
+      "text": "Hours pass like meditation. The sun climbs higher, painting the water with diamonds of light. A dragonfly hovers nearby, curious about this patient guardian of the lake.",
+      "imagePrompt": "Cinematic nature photography, sun high in the sky over calm lake, water surface covered with sparkling diamond-like light reflections, fishing bobber floating gently, a detailed dragonfly hovering mid-air with translucent wings, pine tree reflections in water, peaceful contemplative mood, bright daylight with natural contrast, vertical 9:16 format, film grain texture, vibrant yet peaceful color grading, 1080x1920 vertical format",
+      "imageFile": "scene-04-waiting.png",
+      "audioFile": "scene-04-waiting.wav"
+    },
+    {
+      "id": 5,
+      "text": "Suddenly, the bobber plunges beneath the surface! Thomas's eyes widen with excitement as he grabs his rod. The battle begins — a powerful fish fights for freedom!",
+      "imagePrompt": "Cinematic nature photography, dramatic moment of fishing bobber diving underwater, fishing rod bent with tension, splash of water from fighting fish, elderly fisherman with excited expression, action-packed scene, morning light creating dynamic contrast, water droplets in air, dramatic and energetic mood, vertical 9:16 format, film grain texture, high contrast color grading with blue and gold tones, 1080x1920 vertical format",
+      "imageFile": "scene-05-catch.png",
+      "audioFile": "scene-05-catch.wav"
+    },
+    {
+      "id": 6,
+      "text": "After an epic struggle, a beautiful silver bass glitters in the sunlight. Thomas smiles, admiring his catch before gently releasing it back to freedom. The lake returns to peace, and so does his heart.",
+      "imagePrompt": "Cinematic nature photography, beautiful silver bass fish held gently in weathered hands, fish scales shimmering with rainbow reflections in sunlight, elderly fisherman with peaceful content smile, soft golden hour lighting, shallow depth of field, emotional and heartwarming scene, serene lake in background, vertical 9:16 format, film grain texture, warm nostalgic color grading with soft focus edges, 1080x1920 vertical format",
+      "imageFile": "scene-06-release.png",
+      "audioFile": "scene-06-release.wav"
+    }
+  ],
+  "visualStyle": {
+    "format": "9:16 vertical (1080x1920)",
+    "colorPalette": "Warm golden hour tones, soft blues of water, natural greens of pine trees",
+    "mood": "Peaceful, contemplative, heartwarming, nostalgic",
+    "lighting": "Natural golden hour to bright daylight, soft shadows, warm color grading",
+    "texture": "Subtle film grain, shallow depth of field, cinematic look",
+    "character": "Old fisherman Thomas: silver/gray hair, weathered kind face, warm smile, red flannel shirt, worn cap"
+  }
+}

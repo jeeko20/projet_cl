@@ -1,0 +1,63 @@
+{
+  "episode": 1,
+  "title": "Le signal",
+  "cliffhanger": true,
+  "scenes": [
+    {
+      "id": 1,
+      "speaker": "narrateur",
+      "text": "Neo-Port, 2087. La ville ne dort jamais. Mais cette nuit, quelqu'un l'écoute.",
+      "image": "images/ep1_s1.png",
+      "audio": "audio/ep1_s1.mp3",
+      "imagePrompt": "Composition verticale 1080x1920. Vue aérienne de nuit d'une mégalopole cyberpunk dense, des dizaines de gratte-ciels de 200 à 400 étages saturés d'enseignes au néon cyan et magenta, d'hologrammes géants et de publicités holographiques, rues canyon sombres en contrebas, pluie fine, brouillard lumineux violet, palette bleu électrique et noir profond, style photoréaliste dystopique, ambiance de Blade Runner 2049"
+    },
+    {
+      "id": 2,
+      "speaker": "narrateur",
+      "text": "Nova, hackeuse de rue, capte un signal impossible.",
+      "image": "images/ep1_s2.png",
+      "audio": "audio/ep1_s2.mp3",
+      "imagePrompt": "Composition verticale 1080x1920. Pièce sombre de 6m² dans un immeuble miteux de Neo-Port 2087. Jeune femme d'environ 25 ans vue de dos, prénommée Nova : cheveux courts bleu électrique avec reflets cyan, veste noire à col haut avec coutures lumineuses cyan, gants sans doigts. Elle fait face à un mur de trois écrans holographiques affichant des lignes de code et des cartes réseau, lumière cyan réfléchie sur ses cheveux et sa peau, câbles et antennes bricolées au mur, style photoréaliste cyberpunk"
+    },
+    {
+      "id": 3,
+      "speaker": "nova",
+      "text": "Ce code… il vient du réseau interdit.",
+      "image": "images/ep1_s3.png",
+      "audio": "audio/ep1_s3.mp3",
+      "imagePrompt": "Composition verticale 1080x1920. Gros plan dramatique sur l'écran d'ordinateur de Nova, la même jeune femme de 25 ans aux cheveux courts bleu électrique, partie du visage visible en bord d'image avec reflets rouges sur la peau. L'écran affiche de longues lignes de code rouge sang défilant sur fond noir, plus un logo en forme d'œil barré indiquant un réseau interdit, éclat de lumière rouge sur le visage effrayé de Nova, pièce sombre en arrière-plan flou, ambiance de thriller cyberpunk photoréaliste"
+    },
+    {
+      "id": 4,
+      "speaker": "kai",
+      "text": "Nova, laisse tomber. Ils vont te retrouver.",
+      "image": "images/ep1_s4.png",
+      "audio": "audio/ep1_s4.mp3",
+      "imagePrompt": "Composition verticale 1080x1920. Intérieur sombre du logement de Nova à Neo-Port 2087. Homme d'environ 35 ans prénommé Kai, barbe de trois jours, cheveux gris coupés court, cicatrice blanche fine sur la joue gauche, portant un long manteau sombre et des lunettes à monture fine noire. Il se tient près d'une fenêtre, de profil, regardant une ruelle pluvieuse éclairée au néon orange en contrebas, son visage moitié éclairé par les reflets orange de la pluie, expression inquiète et tendue, style photoréaliste cyberpunk"
+    },
+    {
+      "id": 5,
+      "speaker": "nova",
+      "text": "Trop tard. Il m'a déjà trouvée.",
+      "image": "images/ep1_s5.png",
+      "audio": "audio/ep1_s5.mp3",
+      "imagePrompt": "Composition verticale 1080x1920. Nova, jeune femme de 25 ans aux cheveux courts bleu électrique et veste noire à coutures cyan, assise dans son logement sombre, le visage éclairé par la lueur bleue de son écran de code. Derrière elle, projetée sur le mur, l'ombre massive et menaçante d'une silhouette inconnue encapuchonnée, contrastes forts, ambiance de thriller cyberpunk photoréaliste, tension dramatique"
+    },
+    {
+      "id": 6,
+      "speaker": "narrateur",
+      "text": "Dehors, des drones noirs fendent la pluie.",
+      "image": "images/ep1_s6.png",
+      "audio": "audio/ep1_s6.mp3",
+      "imagePrompt": "Composition verticale 1080x1920. Ruelle étroite de Neo-Port 2087 la nuit, façades grises serrées couvertes d'enseignes au néon cyan et magenta et de gaines apparentes. Cinq drones noirs anguleux sans pilote volent en formation serrée entre les immeubles, leurs phares rouges allumés, la pluie battante à peine visible dans leurs faisceaux, légère brume, ambiance menaçante, style photoréaliste cyberpunk"
+    },
+    {
+      "id": 7,
+      "speaker": "kai",
+      "text": "Prends ton sac. On part. Maintenant.",
+      "image": "images/ep1_s7.png",
+      "audio": "audio/ep1_s7.mp3",
+      "imagePrompt": "Composition verticale 1080x1920. Couloir d'immeuble étroit et sombre de Neo-Port 2087, néons rouges clignotants au plafond, pluie visible par une fenêtre en fond. Kai, homme de 35 ans à la barbe de trois jours, cheveux gris courts et cicatrice sur la joue gauche, en long manteau sombre, tend un sac à dos noir à Nova, jeune femme de 25 ans aux cheveux courts bleu électrique et veste noire à coutures cyan. Nova le regarde, lumière rouge sur les deux visages, tension et urgence, style photoréaliste cyberpunk"
+    }
+  ]
+}
